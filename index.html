@@ -4,78 +4,231 @@
   <meta charset="UTF-8">
   <title>My Portfolio</title>
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      display: flex;
+      padding: 0;
+      box-sizing: border-box;
     }
-    /* Sidebar */
-    .sidebar {
-      width: 220px;
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+    }
+    /* Top Navigation */
+    .navbar {
       background: #ffea00;
       color: #ff00d0;
-      height: 100vh;
-      position: fixed;
-      padding-top: 20px;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
-    .sidebar a {
+    .navbar h1 {
+      font-size: 24px;
+    }
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+    .nav-item {
+      position: relative;
+    }
+    .nav-item > a {
+      color: #ff00d0;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+    .nav-item > a:hover {
+      background: #575757;
+      color: white;
+    }
+    /* Dropdown Menu */
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #ffea00;
+      border: 2px solid #ff00d0;
+      border-radius: 4px;
+      min-width: 200px;
+      list-style: none;
+      display: none;
+      margin-top: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .dropdown li {
+      border-bottom: 1px solid #ff00d0;
+    }
+    .dropdown li:last-child {
+      border-bottom: none;
+    }
+    .dropdown a {
       display: block;
       color: #ff00d0;
-      padding: 12px;
       text-decoration: none;
+      padding: 12px 16px;
+      transition: background 0.3s;
     }
-    .sidebar a:hover {
+    .dropdown a:hover {
       background: #575757;
+      color: white;
+    }
+    .nav-item:hover .dropdown {
+      display: block;
     }
     /* Main content */
     .content {
-      margin-left: 220px;
-      padding: 20px;
-      flex: 1;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      min-height: calc(100vh - 80px);
+    }
+    section {
+      display: none;
+    }
+    section.active {
+      display: block;
+    }
+    h1 {
+      color: #ff00d0;
+      margin-bottom: 15px;
+    }
+    p {
+      line-height: 1.6;
+      color: #333;
+      margin-bottom: 15px;
     }
     iframe {
       width: 100%;
-      height: 315px;
+      height: 400px;
       margin-bottom: 20px;
       border: none;
+      border-radius: 8px;
     }
   </style>
 </head>
 <body>
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <h2>My Portfolio</h2>
-    <a href="#Home">Home</a>
-    <a href="#Installations">Installations</a>
-    <a href="#Tasks">Tasks</a>
-    <a href="#Finals">Finals</a>
-    
-  </div>
+  <!-- Top Navigation -->
+  <nav class="navbar">
+    <h1>My Portfolio</h1>
+    <ul class="nav-menu">
+      <li class="nav-item">
+        <a href="#" onclick="showSection('home'); return false;">Home</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" onclick="toggleDropdown(event)">Installations ▼</a>
+        <ul class="dropdown">
+          <li><a href="#" onclick="showSection('installations-setup'); return false;">Setup Guide</a></li>
+          <li><a href="#" onclick="showSection('installations-tools'); return false;">Tools & Software</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a href="#" onclick="toggleDropdown(event)">Laboratory ▼</a>
+        <ul class="dropdown">
+          <li><a href="#" onclick="showSection('laboratory-activities'); return false;">Lab Activities</a></li>
+          <li><a href="#" onclick="showSection('laboratory-reports'); return false;">Lab Reports</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a href="#" onclick="toggleDropdown(event)">Finals ▼</a>
+        <ul class="dropdown">
+          <li><a href="#" onclick="showSection('finals-notes'); return false;">Final Notes</a></li>
+          <li><a href="#" onclick="showSection('finals-exam'); return false;">Exam Materials</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a href="#" onclick="showSection('about'); return false;">About Me</a>
+      </li>
+    </ul>
+  </nav>
 
   <!-- Content -->
   <div class="content">
+    <section id="home" class="active">
+      <h1>Welcome to My Portfolio</h1>
+      <p>Welcome to my portfolio! I'm showcasing my work, projects, and educational materials here.</p>
+      <p>Use the navigation menu above to explore different sections of my portfolio.</p>
+    </section>
+
+    <!-- Installations Sections -->
+    <section id="installations-setup">
+      <h1>Installation Setup Guide</h1>
+      <p>Here you'll find detailed instructions for setting up and installing various software and tools.</p>
+      <p>Step-by-step guides and best practices for installation are provided in this section.</p>
+    </section>
+
+    <section id="installations-tools">
+      <h1>Tools & Software</h1>
+      <p>A comprehensive list of tools and software used in this course or project.</p>
+      <p>Descriptions, links, and documentation for each tool are available here.</p>
+    </section>
+
+    <!-- Laboratory Sections -->
+    <section id="laboratory-activities">
+      <h1>Laboratory Activities</h1>
+      <p>Collection of laboratory activities and hands-on exercises completed during the course.</p>
+      <p>Each activity includes objectives, procedures, and results.</p>
+    </section>
+
+    <section id="laboratory-reports">
+      <h1>Laboratory Reports</h1>
+      <p>Detailed reports from laboratory activities and experiments.</p>
+      <p>Analysis, findings, and conclusions are documented here.</p>
+    </section>
+
+    <!-- Finals Sections -->
+    <section id="finals-notes">
+      <h1>Final Exam Notes</h1>
+      <p>Comprehensive study notes for the final examination.</p>
+      <p>Key concepts, formulas, and important points are highlighted here.</p>
+    </section>
+
+    <section id="finals-exam">
+      <h1>Exam Materials</h1>
+      <p>Practice questions, sample exams, and additional study materials for finals preparation.</p>
+      <p>Review these materials to prepare for the final examination.</p>
+    </section>
+
+    <!-- About Section -->
     <section id="about">
       <h1>About Me</h1>
-      <p>Welcome to my portfolio! I’m showcasing my work and videos here.</p>
-    </section>
-
-    <section id="projects">
-      <h1>Projects</h1>
-      <p>Details about your projects go here.</p>
-    </section>
-
-    <section id="videos">
-      <h1>My YouTube Videos</h1>
-      <!-- Embed YouTube videos -->
-      <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe>
-    </section>
-
-    <section id="contact">
-      <h1>Contact</h1>
+      <p>Hi! I'm a student passionate about learning and technology.</p>
+      <p>This portfolio showcases my work, projects, and educational achievements. Feel free to explore my projects and contact me if you have any questions!</p>
+      <h2 style="color: #ff00d0; margin-top: 20px;">Contact Information</h2>
       <p>Email: yourname@example.com</p>
+      <p>Phone: +1 (555) 123-4567</p>
     </section>
   </div>
+
+  <script>
+    function showSection(sectionId) {
+      // Hide all sections
+      const sections = document.querySelectorAll('section');
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+      // Show selected section
+      const targetSection = document.getElementById(sectionId);
+      if (targetSection) {
+        targetSection.classList.add('active');
+      }
+      return false;
+    }
+    function toggleDropdown(event) {
+      event.preventDefault();
+      const dropdown = event.target.nextElementSibling;
+      if (dropdown && dropdown.classList.contains('dropdown')) {
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+      }
+    }
+  </script>
 </body>
 </html>
