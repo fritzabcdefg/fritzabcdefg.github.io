@@ -1,1 +1,0 @@
-# fritzabcdefg.github.io
