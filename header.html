@@ -46,17 +46,31 @@
 	</div>
 
 	<script id="header-init">
-		// Build absolute hrefs for anchors that use data-path so links work on GitHub Pages.
+		// Compute site root from document.baseURI and build absolute hrefs for data-path anchors.
 		(function(){
 			const elems = document.querySelectorAll('[data-path]');
 			if(!elems.length) return;
-			const originBase = location.origin.replace(/\/$/, '') + '/';
+			const base = (document.baseURI || location.href || '').toString();
+			const lower = base.toLowerCase();
+			const markers = ['/installations/','/laboratory/','/finals/','/about.html','/index.html','/home.html'];
+			let cut = -1;
+			for(const m of markers){
+				const i = lower.indexOf(m);
+				if(i !== -1 && (cut === -1 || i < cut)) cut = i;
+			}
+			let siteRoot;
+			if(cut !== -1){
+				siteRoot = base.slice(0, cut);
+				if(!siteRoot.endsWith('/')) siteRoot += '/';
+			} else {
+				// fallback: use directory of base
+				const last = base.lastIndexOf('/');
+				siteRoot = last !== -1 ? base.slice(0, last+1) : base + '/';
+			}
 			elems.forEach(el=>{
 				const p = el.getAttribute('data-path');
 				try{
-					// Use originBase so paths like "installations/Windows10.html" become
-					// https://site.origin/installations/Windows10.html regardless of current folder.
-					const resolved = new URL(p, originBase).href;
+					const resolved = new URL(p, siteRoot).href;
 					el.setAttribute('href', resolved);
 				}catch(e){
 					el.setAttribute('href', p);
