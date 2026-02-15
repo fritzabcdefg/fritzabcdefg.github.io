@@ -64,18 +64,18 @@
 							candidate = p.replace(/installations\//i, '');
 						} else if(p.startsWith('laboratory/') || p.startsWith('finals/') ){ 
 							// go up then into target dir
-							candidate = '../' + p;
+							candidate = '.../' + p;
 						} else {
 							// top-level (index/about) -> go up one level
-							candidate = '../' + p;
+							candidate = '.../' + p;
 						}
 					} else if(inLab){
 						if(p.toLowerCase().startsWith('laboratory/')){
 							candidate = p.replace(/laboratory\//i, '');
 						} else if(p.startsWith('installations/') || p.startsWith('finals/')){
-							candidate = '../' + p;
+							candidate = '.../' + p;
 						} else {
-							candidate = '../' + p;
+							candidate = '.../' + p;
 						}
 					} else {
 						// top-level page: use provided path (it may include installations/ or laboratory/)
