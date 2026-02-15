@@ -46,47 +46,21 @@
 	</div>
 
 	<script id="header-init">
-		// Resolve relative paths for anchors that use data-path.
+		// Build absolute hrefs for anchors that use data-path so links work on GitHub Pages.
 		(function(){
 			const elems = document.querySelectorAll('[data-path]');
 			if(!elems.length) return;
-			const path = (location.pathname || '').toLowerCase();
-			const inInstall = path.includes('/installations/');
-			const inLab = path.includes('/laboratory/');
-			// For pages inside a subfolder, top-level links should go up one level (../).
+			const originBase = location.origin.replace(/\/$/, '') + '/';
 			elems.forEach(el=>{
 				const p = el.getAttribute('data-path');
-				let candidate = p;
 				try{
-					if(inInstall){
-						if(p.toLowerCase().startsWith('installations/')){
-							// sibling file inside installations
-							candidate = p.replace(/installations\//i, '');
-						} else if(p.startsWith('laboratory/') || p.startsWith('finals/') ){ 
-							// go up then into target dir
-							candidate = '.../' + p;
-						} else {
-							// top-level (index/about) -> go up one level
-							candidate = '.../' + p;
-						}
-					} else if(inLab){
-						if(p.toLowerCase().startsWith('laboratory/')){
-							candidate = p.replace(/laboratory\//i, '');
-						} else if(p.startsWith('installations/') || p.startsWith('finals/')){
-							candidate = '.../' + p;
-						} else {
-							candidate = '.../' + p;
-						}
-					} else {
-						// top-level page: use provided path (it may include installations/ or laboratory/)
-						candidate = p;
-					}
-				}catch(e){ candidate = p }
-				// Resolve to absolute URL using base URI
-				try{
-					const resolved = new URL(candidate, document.baseURI).href;
+					// Use originBase so paths like "installations/Windows10.html" become
+					// https://site.origin/installations/Windows10.html regardless of current folder.
+					const resolved = new URL(p, originBase).href;
 					el.setAttribute('href', resolved);
-				}catch(e){ el.setAttribute('href', candidate) }
+				}catch(e){
+					el.setAttribute('href', p);
+				}
 				el.style.cursor = 'pointer';
 				el.addEventListener('click', function(e){
 					if(this.getAttribute('href')) location.href = this.getAttribute('href');
