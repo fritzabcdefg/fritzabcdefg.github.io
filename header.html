@@ -13,7 +13,6 @@
 <header class="site-header">
 	<div class="container text-center">
 		<h1 class="site-title">Operating Systems</h1>
-		<p class="site-sub">A concise guide to operating systems and resources</p>
 		<nav class="nav-inline" aria-label="Main navigation">
 			<a class="btn btn-outline-success btn-sm" data-path="index.html">Home</a>
 			<a class="btn btn-outline-success btn-sm" data-path="about.html">About</a>
@@ -31,6 +30,7 @@
 					<a data-path="installations/Windows8.html">Windows 8</a>
 					<a data-path="installations/Windows10.html">Windows 10</a>
 					<a data-path="installations/Windows11.html">Windows 11</a>
+                    <a data-path="installations/WindowsServer2008.html">Windows Server 2008</a>
 				</div>
 			</div>
 			<div class="dropdown-hover">
@@ -45,31 +45,34 @@
 		</nav>
 	</div>
 
-	<script>
+	<script id="header-init">
 		// Resolve relative paths for anchors that use data-path.
 		(function(){
 			const elems = document.querySelectorAll('[data-path]');
 			if(!elems.length) return;
-			const prefixes = ['','../','../../'];
+			const path = (location.pathname || '').toLowerCase();
 			elems.forEach(el=>{
 				const p = el.getAttribute('data-path');
-				(async function(){
-					for(const prefix of prefixes){
-						try{
-							const url = prefix + p;
-							const res = await fetch(url, {method:'HEAD'});
-							if(res && (res.ok || res.status===200)){
-								el.setAttribute('href', url);
-								el.style.cursor = 'pointer';
-								el.addEventListener('click', e=>{ if(el.getAttribute('href')) location.href = el.getAttribute('href'); });
-								return;
-							}
-						}catch(e){ }
+				let candidate = p;
+				try{
+					// If we're already inside the same directory (installations/ or laboratory/),
+					// strip the leading directory from the data-path so links point to sibling files.
+					if(path.includes('/installations/') && p.toLowerCase().startsWith('installations/')){
+						candidate = p.replace(/installations\//i, '');
+					} else if(path.includes('/laboratory/') && p.toLowerCase().startsWith('laboratory/')){
+						candidate = p.replace(/laboratory\//i, '');
 					}
-					el.setAttribute('href', p);
-					el.style.cursor = 'pointer';
-					el.addEventListener('click', e=>{ location.href = p; });
-				})();
+				}catch(e){ candidate = p }
+				// Resolve against the current document base URI so it becomes an absolute URL.
+				try{
+					const resolved = new URL(candidate, document.baseURI).href;
+					el.setAttribute('href', resolved);
+				}catch(e){ el.setAttribute('href', candidate) }
+				el.style.cursor = 'pointer';
+				el.addEventListener('click', function(e){
+					// Let normal navigation occur; for safety, set location.href explicitly.
+					if(this.getAttribute('href')) location.href = this.getAttribute('href');
+				});
 			});
 		})();
 	</script>
