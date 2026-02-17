@@ -38,7 +38,8 @@
 				<div class="dropdown-menu">
 					<a data-path="laboratory/Task1.html">Task 1</a>
 					<a data-path="laboratory/Task2.html">Task 2</a>
-					<a data-path="laboratory/Task3&4.html">Task 3 & 4</a>
+					<a data-path="laboratory/Task3.html">Task 3</a>
+					<a data-path="laboratory/Task4.html">Task 4</a>
 				</div>
 			</div>
 			<a class="btn btn-outline-success btn-sm" data-path="finals/index.html">Finals</a>
@@ -46,7 +47,6 @@
 	</div>
 
 	<script id="header-init">
-		// Compute site root from document.baseURI and build absolute hrefs for data-path anchors.
 		(function(){
 			const elems = document.querySelectorAll('[data-path]');
 			if(!elems.length) return;

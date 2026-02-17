@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Task 4 Cadao OS </title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>body{font-family:'Montserrat',Arial,sans-serif;color:#006e21;margin:0} main{max-width:900px;margin:2rem auto;padding:1rem;padding-bottom:5rem}</style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main>
+    <h1 id="page-title">Task 4: RAID</h1>
+
+    <div class="ratio ratio-16x9" id="video-embed">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/th4DSlRytnI?si=j7-gIOwYPNbRWt3O" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><section id="description" style="margin-top:1.25rem">
+  <h4>Notes:</h4>
+  <p>For Task 4, we are configuring RAID in Windows Server 2008 Hard Disks. </p>
+  <p>
+      Task 4: RAID Installation<br><br>
+
+      Perform the RAID Installation of the following levels:<br>
+      RAID 0: Stripped Volume<br>
+      RAID 1: Mirrored Volume<br>
+      RAID 5<br>
+      Spanned Volume<br><br>
+
+      Steps:<br>
+      1. Clone Windows Server 2008 that you used for your DHCP activity.<br>
+      2. After cloning, click Settings → Storage → click add attachment icon → Hard Disk.<br>
+      3. After opening medium selector → click Create → check pre-allocate full size → allocate 50 MB → click Finish.<br>
+      4. Make sure you create 10 of these hard disks.<br>
+      5. Back to Settings → Storage → add/attach all of these hard disks in your WS2008.<br>
+      6. Start your WS2008.<br>
+      7. Click Start → Administrative Tools → Server Manager → expand Storage → Disk Management.<br>
+      8. After clicking Disk Management, you will see a tab pop out "Initialize Disk" containing all the disks you attached in your VM. Make sure MBR is the partition style.<br>
+      9. Click OK to initialize the disks.<br><br>
+
+      RAID 0: Stripped Volume<br>
+      10. Click Disk 1 → New Stripped Volume.<br>
+      11. Next → select Disk 2 → Add → Next → name volume as RAID0 or Stripped → check "Perform a quick format" → Next → Finish → Yes if prompted → wait.<br><br>
+
+      RAID 1: Mirrored Volume<br>
+      12. Click Disk 3 → New Mirrored Volume.<br>
+      13. Next → select Disk 4 → Add → Next → name volume as RAID1 or Mirrored → check "Perform a quick format" → Next → Finish → Yes if prompted → wait.<br><br>
+
+      Spanned Volume<br>
+      14. Click Disk 5 → New Spanned Volume.<br>
+      15. Next → select Disk 6 → Add → select Disk 7 → Add → Next → name volume as Spanned → check "Perform a quick format" → Next → Finish → Yes if prompted → wait.<br><br>
+
+      RAID 5<br>
+      16. Click Disk 8 → New Spanned Volume.<br>
+      17. Next → select Disk 9 → Add → select Disk 10 → Add → Next → name volume as RAID5 → check "Perform a quick format" → Next → Finish → Yes if prompted → wait.<br>
+      </p>
+</section>
+
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script>
+    fetch('../header.html').then(r=>r.text()).then(t=>{
+      document.getElementById('site-header').innerHTML = t;
+      const init = document.getElementById('site-header').querySelector('#header-init');
+      if(init){ const s = document.createElement('script'); s.text = init.textContent; document.body.appendChild(s); }
+    });
+    fetch('../footer.html').then(r=>r.text()).then(t=>document.getElementById('site-footer').innerHTML=t);
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
