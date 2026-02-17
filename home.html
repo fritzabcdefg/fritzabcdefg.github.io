@@ -46,14 +46,59 @@
     }
   </style>
 </head>
+  <style>
+    .site-header { background: #f8f9fa; padding: 1.25rem 0; }
+    .site-title { color: #006e21; margin: 0; font-size: 2rem; font-weight:700 }
+    .site-sub { color: #006e21; margin: 0.25rem 0 0; }
+    .nav-inline { margin-top: .75rem; display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap }
+    .nav-inline .btn { border-color: #006e21; color: #006e21 }
+    .dropdown-hover { position:relative }
+    .dropdown-hover .dropdown-menu { display:none; position:absolute; left:0; top:100%; background:#fff; border:1px solid #ddd; padding:.5rem 0; min-width:220px; box-shadow:0 6px 18px rgba(0,0,0,.08); z-index:200 }
+    .dropdown-hover:hover .dropdown-menu { display:block }
+    .dropdown-hover .dropdown-menu a { display:block; padding:.4rem .75rem; color:#006e21; text-decoration:none }
+    .dropdown-hover .dropdown-menu a:hover { background:#f1f1f1 }
+  </style>
 <body>
-  <div id="site-header"></div>
 
   <section class="hero">
     <h1>Operating Systems</h1>
     <p>Understanding the foundation of modern computing</p>
   </section>
-
+<header class="site-header">
+	<div class="container text-center">
+		<h1 class="site-title">Operating Systems</h1>
+		<nav class="nav-inline" aria-label="Main navigation">
+			<a class="btn btn-outline-success btn-sm" data-path="home.html">Home</a>
+			<a class="btn btn-outline-success btn-sm" data-path="about.html">About</a>
+			<div class="dropdown-hover">
+				<a class="btn btn-outline-success btn-sm">Installations ▾</a>
+				<div class="dropdown-menu">
+					<a data-path="installations/Windows95.html">Windows 95</a>
+					<a data-path="installations/Windows98.html">Windows 98</a>
+					<a data-path="installations/WindowsNT.html">Windows NT</a>
+					<a data-path="installations/Windows2000.html">Windows 2000</a>
+					<a data-path="installations/WindowsME.html">Windows ME</a>
+					<a data-path="installations/WindowsXP.html">Windows XP</a>
+					<a data-path="installations/WindowsVista.html">Windows Vista</a>
+					<a data-path="installations/Windows7.html">Windows 7</a>
+					<a data-path="installations/Windows8.html">Windows 8</a>
+					<a data-path="installations/Windows10.html">Windows 10</a>
+					<a data-path="installations/Windows11.html">Windows 11</a>
+                    <a data-path="installations/WindowsServer2008.html">Windows Server 2008</a>
+				</div>
+			</div>
+			<div class="dropdown-hover">
+				<a class="btn btn-outline-success btn-sm">Laboratory ▾</a>
+				<div class="dropdown-menu">
+					<a data-path="laboratory/Task1.html">Task 1</a>
+					<a data-path="laboratory/Task2.html">Task 2</a>
+					<a data-path="laboratory/Task3.html">Task 3</a>
+					<a data-path="laboratory/Task4.html">Task 4</a>
+				</div>
+			</div>
+			<a class="btn btn-outline-success btn-sm" data-path="finals/index.html">Finals</a>
+		</nav>
+	</div>
   <main>
     <div class="content-section">
       <p>Operating Systems are system software that manage computer hardware and software resources.</p>
