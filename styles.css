@@ -164,6 +164,18 @@ body {
   color: #fff;
 }
 
+/* Bootstrap Icons Styling */
+.dropdown-hover .dropdown-menu i {
+  margin-right: 0.5rem;
+  font-size: 1.1rem;
+  vertical-align: middle;
+  color: var(--primary-color);
+}
+
+.dropdown-hover .dropdown-menu a:hover i {
+  color: var(--primary-dark);
+}
+
 /* =============================================
    FOOTER STYLES
    ============================================= */
