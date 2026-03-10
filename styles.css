@@ -123,6 +123,8 @@ body {
   transform: translateY(-8px);
   transition: var(--transition);
   animation: slideDown 0.2s ease-out forwards;
+  min-width: 280px;
+  box-shadow: var(--shadow-md);
 }
 
 @keyframes slideDown {
