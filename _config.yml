@@ -1,0 +1,18 @@
+# OS Website Configuration for GitHub Pages
+title: Operating Systems
+description: "Academic collection about operating systems, installations, laboratory exercises, and final materials"
+author: "Fritzie Ann L. Cadao"
+email: ""
+
+# Build settings
+markdown: kramdown
+theme: null
+
+# GitHub Pages safe settings
+plugins:
+  - jekyll-seo-tag
+
+exclude:
+  - README.md
+  - .gitignore
+  - package.json
