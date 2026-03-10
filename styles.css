@@ -4,9 +4,11 @@
    ============================================= */
 
 :root {
-  --primary-color: #006e21;
-  --primary-light: #e8f5e9;
-  --primary-dark: #004d15;
+  --primary-color: #5a8066;
+  --primary-light: #c8d665;
+  --primary-dark: #8b6b9a;
+  --accent-light: #e8dce8;
+  --accent-medium: #d4a7d9;
   --bg-light: #f8f9fa;
   --text-dark: #1a1a1a;
   --text-secondary: #666;
@@ -36,10 +38,7 @@ body {
 .site-header {
   background: var(--bg-light);
   padding: 1.5rem 0;
-  border-bottom: 2px solid var(--primary-light);
-  transition: var(--transition);
-}
-
+	border-bottom: 2px solid var(--accent-light);
 .site-title {
   color: var(--primary-color);
   margin: 0;
@@ -118,13 +117,7 @@ body {
   left: 0;
   top: calc(100% + 8px);
   background: #fff;
-  border: 2px solid var(--primary-light);
-  border-radius: 8px;
-  padding: 0.5rem 0;
-  min-width: 240px;
-  box-shadow: var(--shadow-lg);
-  z-index: 200;
-  opacity: 0;
+	border: 2px solid var(--accent-light);
   transform: translateY(-8px);
   transition: var(--transition);
   animation: slideDown 0.2s ease-out forwards;
@@ -159,8 +152,7 @@ body {
 }
 
 .dropdown-hover .dropdown-menu a:hover {
-  background: var(--primary-light);
-  border-left-color: var(--primary-color);
+	background: var(--accent-light);
   padding-left: 1.25rem;
   color: var(--primary-dark);
 }
@@ -180,7 +172,7 @@ body {
   right: 0;
   bottom: 0;
   background: #fff;
-  border-top: 2px solid #e8f5e9;
+  border-top: 2px solid var(--accent-light);
   color: var(--primary-color);
   text-align: center;
   padding: 0.8rem 0;
@@ -239,10 +231,10 @@ strong {
    ============================================= */
 
 .hero {
-  background: linear-gradient(135deg, var(--bg-light) 0%, var(--primary-light) 100%);
+  background: linear-gradient(135deg, var(--bg-light) 0%, var(--accent-light) 100%);
   padding: 3.5rem 1rem;
   text-align: center;
-  border-bottom: 3px solid var(--primary-light);
+  border-bottom: 3px solid var(--accent-light);
   border-radius: 8px 8px 0 0;
   margin-bottom: 2rem;
   box-shadow: var(--shadow-sm);
@@ -295,21 +287,37 @@ main.container {
    ============================================= */
 
 .ratio {
-  background: var(--primary-light);
+  background: var(--accent-light);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: var(--shadow-md);
   transition: var(--transition);
   margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  max-width: 800px;
+  width: 100%;
+}
+
+.ratio iframe {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
 }
 
 .ratio:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 16px rgba(0, 110, 33, 0.15);
+  box-shadow: 0 6px 16px rgba(139, 107, 154, 0.15);
 }
 
 section {
   animation: fadeIn 0.5s ease-in;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+}
+
+section h4 {
+  margin-top: 0;
 }
 
 @keyframes fadeIn {
@@ -377,3 +385,4 @@ section {
     font-size: 0.75rem;
   }
 }
+
