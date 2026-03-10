@@ -52,36 +52,35 @@
 
 	<script id="header-init">
 		(function(){
-			const elems = document.querySelectorAll('[data-path]');
-			if(!elems.length) return;
-			const base = (document.baseURI || location.href || '').toString();
-			const lower = base.toLowerCase();
-			const markers = ['/installations/','/laboratory/','/finals/','/about.html','/home.html'];
-			let cut = -1;
-			for(const m of markers){
-				const i = lower.indexOf(m);
-				if(i !== -1 && (cut === -1 || i < cut)) cut = i;
-			}
-			let siteRoot;
-			if(cut !== -1){
-				siteRoot = base.slice(0, cut);
-				if(!siteRoot.endsWith('/')) siteRoot += '/';
-			} else {
-				// fallback: use directory of base
-				const last = base.lastIndexOf('/');
-				siteRoot = last !== -1 ? base.slice(0, last+1) : base + '/';
-			}
-			elems.forEach(el=>{
-				const p = el.getAttribute('data-path');
-				try{
-					const resolved = new URL(p, siteRoot).href;
-					el.setAttribute('href', resolved);
-				}catch(e){
-					el.setAttribute('href', p);
+			const links = document.querySelectorAll('[data-path]');
+			if(!links.length) return;
+			
+			// Determine site root by checking current URL
+			const loc = window.location;
+			const path = loc.pathname;
+			
+			// Detect depth: if path contains /installations/ /laboratory/ /finals/, we're in a subdirectory
+			const isSubdir = /\/(installations|laboratory|finals)\//.test(path);
+			const basePrefix = isSubdir ? '../' : './';
+			
+			links.forEach(link => {
+				const dataPath = link.getAttribute('data-path');
+				const href = basePrefix + dataPath;
+				link.setAttribute('href', href);
+				link.style.cursor = 'pointer';
+				
+				// Check if this is the current page
+				const currentPageName = path.split('/').pop() || 'index.html';
+				const targetPageName = dataPath.split('/').pop();
+				if(currentPageName === targetPageName || (!currentPageName && targetPageName === 'home.html')){
+					link.classList.add('active');
+					link.setAttribute('aria-current', 'page');
 				}
-				el.style.cursor = 'pointer';
-				el.addEventListener('click', function(e){
-					if(this.getAttribute('href')) location.href = this.getAttribute('href');
+				
+				// Add click event
+				link.addEventListener('click', function(e){
+					e.preventDefault();
+					location.href = href;
 				});
 			});
 		})();
