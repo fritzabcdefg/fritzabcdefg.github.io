@@ -39,6 +39,8 @@ body {
   background: var(--bg-light);
   padding: 1.5rem 0;
 	border-bottom: 2px solid var(--accent-light);
+}
+
 .site-title {
   color: var(--primary-color);
   margin: 0;
@@ -384,6 +386,4 @@ section h4 {
   .site-footer small {
     font-size: 0.75rem;
   }
-}
-
 }
