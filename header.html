@@ -1,15 +1,3 @@
-<style>
-	.site-header { background: #f8f9fa; padding: 1.25rem 0; }
-	.site-title { color: #006e21; margin: 0; font-size: 4rem; font-weight:700 }
-	.site-sub { color: #006e21; margin: 0.25rem 0 0; }
-	.nav-inline { margin-top: .75rem; display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap }
-	.nav-inline .btn { border-color: #006e21; color: #006e21 }
-	.dropdown-hover { position:relative }
-	.dropdown-hover .dropdown-menu { display:none; position:absolute; left:0; top:100%; background:#fff; border:1px solid #ddd; padding:.5rem 0; min-width:220px; box-shadow:0 6px 18px rgba(0,0,0,.08); z-index:200 }
-	.dropdown-hover:hover .dropdown-menu { display:block }
-	.dropdown-hover .dropdown-menu a { display:block; padding:.4rem .75rem; color:#006e21; text-decoration:none }
-	.dropdown-hover .dropdown-menu a:hover { background:#f1f1f1 }
-</style>
 <header class="site-header">
 	<div class="container text-center">
 		<h1 class="site-title">Operating Systems</h1>
@@ -61,41 +49,5 @@
 			</div>
 		</nav>
 	</div>
-
-	<script id="header-init">
-		(function(){
-			const elems = document.querySelectorAll('[data-path]');
-			if(!elems.length) return;
-			const base = (document.baseURI || location.href || '').toString();
-			const lower = base.toLowerCase();
-			const markers = ['/installations/','/laboratory/','/finals/','/about.html','/home.html'];
-			let cut = -1;
-			for(const m of markers){
-				const i = lower.indexOf(m);
-				if(i !== -1 && (cut === -1 || i < cut)) cut = i;
-			}
-			let siteRoot;
-			if(cut !== -1){
-				siteRoot = base.slice(0, cut);
-				if(!siteRoot.endsWith('/')) siteRoot += '/';
-			} else {
-				// fallback: use directory of base
-				const last = base.lastIndexOf('/');
-				siteRoot = last !== -1 ? base.slice(0, last+1) : base + '/';
-			}
-			elems.forEach(el=>{
-				const p = el.getAttribute('data-path');
-				try{
-					const resolved = new URL(p, siteRoot).href;
-					el.setAttribute('href', resolved);
-				}catch(e){
-					el.setAttribute('href', p);
-				}
-				el.style.cursor = 'pointer';
-				el.addEventListener('click', function(e){
-					if(this.getAttribute('href')) location.href = this.getAttribute('href');
-				});
-			});
-		})();
-	</script>
+</header>
 </header>

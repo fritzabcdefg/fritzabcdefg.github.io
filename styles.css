@@ -1,0 +1,379 @@
+/* =============================================
+   CADAO OS WEBSITE - MODERN STYLES
+   Color Scheme: Green (#006e21)
+   ============================================= */
+
+:root {
+  --primary-color: #006e21;
+  --primary-light: #e8f5e9;
+  --primary-dark: #004d15;
+  --bg-light: #f8f9fa;
+  --text-dark: #1a1a1a;
+  --text-secondary: #666;
+  --border-color: #e0e0e0;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', Arial, sans-serif;
+  background: linear-gradient(135deg, #fff 0%, rgba(232, 245, 233, 0.2) 100%);
+  color: var(--text-dark);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* =============================================
+   HEADER STYLES
+   ============================================= */
+
+.site-header {
+  background: var(--bg-light);
+  padding: 1.5rem 0;
+  border-bottom: 2px solid var(--primary-light);
+  transition: var(--transition);
+}
+
+.site-title {
+  color: var(--primary-color);
+  margin: 0;
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  transition: var(--transition);
+}
+
+.site-title:hover {
+  color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.site-sub {
+  color: var(--primary-color);
+  margin: 0.25rem 0 0;
+  opacity: 0.85;
+  font-size: 0.95rem;
+}
+
+/* =============================================
+   NAVIGATION STYLES
+   ============================================= */
+
+.nav-inline {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.nav-inline .btn {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  border-width: 2px;
+  font-weight: 600;
+  padding: 0.5rem 1.25rem;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-inline .btn:hover,
+.nav-inline .btn.active {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.nav-inline .btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+}
+
+/* =============================================
+   DROPDOWN MENU STYLES
+   ============================================= */
+
+.dropdown-hover {
+  position: relative;
+}
+
+.dropdown-hover .dropdown-menu {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: calc(100% + 8px);
+  background: #fff;
+  border: 2px solid var(--primary-light);
+  border-radius: 8px;
+  padding: 0.5rem 0;
+  min-width: 240px;
+  box-shadow: var(--shadow-lg);
+  z-index: 200;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: var(--transition);
+  animation: slideDown 0.2s ease-out forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-hover:hover .dropdown-menu {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown-hover .dropdown-menu a {
+  display: block;
+  padding: 0.6rem 1rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: var(--transition);
+  font-weight: 500;
+  position: relative;
+  border-left: 3px solid transparent;
+}
+
+.dropdown-hover .dropdown-menu a:hover {
+  background: var(--primary-light);
+  border-left-color: var(--primary-color);
+  padding-left: 1.25rem;
+  color: var(--primary-dark);
+}
+
+.dropdown-hover .dropdown-menu a:active {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+/* =============================================
+   FOOTER STYLES
+   ============================================= */
+
+.site-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  border-top: 2px solid #e8f5e9;
+  color: var(--primary-color);
+  text-align: center;
+  padding: 0.8rem 0;
+  z-index: 300;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.site-footer small {
+  display: block;
+  font-weight: 600;
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.site-footer div {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* =============================================
+   MAIN CONTENT STYLES
+   ============================================= */
+
+main {
+  padding: 2rem 1rem 4.5rem;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 700;
+  color: var(--primary-color);
+  transition: var(--transition);
+}
+
+h1:hover, h2:hover, h3:hover {
+  color: var(--primary-dark);
+  transform: translateX(4px);
+}
+
+p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+
+strong {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+/* =============================================
+   HERO SECTION
+   ============================================= */
+
+.hero {
+  background: linear-gradient(135deg, var(--bg-light) 0%, var(--primary-light) 100%);
+  padding: 3.5rem 1rem;
+  text-align: center;
+  border-bottom: 3px solid var(--primary-light);
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.hero h1 {
+  font-size: 2.75rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 0;
+}
+
+/* =============================================
+   CONTENT SECTIONS
+   ============================================= */
+
+.content-section {
+  max-width: 850px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  border-left: 5px solid var(--primary-color);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+}
+
+.content-section:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+main.container {
+  background: #fff;
+  padding: 2rem !important;
+  border-radius: 12px;
+  border-left: 5px solid var(--primary-color);
+  box-shadow: var(--shadow-md);
+  max-width: 900px;
+  margin: 2rem auto !important;
+}
+
+/* =============================================
+   VIDEO EMBEDS
+   ============================================= */
+
+.ratio {
+  background: var(--primary-light);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  margin-top: 1.5rem;
+}
+
+.ratio:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 110, 33, 0.15);
+}
+
+section {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =============================================
+   RESPONSIVE DESIGN
+   ============================================= */
+
+@media (max-width: 768px) {
+  .site-title {
+    font-size: 2.5rem;
+  }
+
+  main {
+    padding: 1.5rem 1rem 5rem;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .content-section {
+    margin: 1rem auto;
+    padding: 1.5rem;
+  }
+
+  main.container {
+    padding: 1.5rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .site-title {
+    font-size: 2.25rem;
+  }
+
+  .nav-inline {
+    gap: 0.5rem;
+  }
+
+  .nav-inline .btn {
+    padding: 0.4rem 0.95rem;
+    font-size: 0.9rem;
+  }
+
+  .site-footer {
+    padding: 0.6rem 0;
+    font-size: 0.9rem;
+  }
+
+  .site-footer small {
+    font-size: 0.75rem;
+  }
+}
