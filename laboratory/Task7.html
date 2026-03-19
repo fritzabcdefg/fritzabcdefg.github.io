@@ -21,7 +21,156 @@
 
       <section id="description">
         <h4>Notes / Description</h4>
-        <p>For Task 7, we are configuring Group Policy Management in Windows Server 2008. This covers user and computer policies, security settings, and domain management.</p>
+        <div style="line-height: 1.8; font-size: 0.92rem;">
+          <strong>Task 7: GROUP POLICY MANAGEMENT</strong>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>Initial Setup Steps</strong>
+          <ol style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li>Go to Start → Administrative Tools → Active Directory Users and Computers</li>
+            <li>Create a new Organizational Unit → <code style="background: #f5f5f5; padding: 2px 4px;">BSIT</code></li>
+            <li>Add all students to the Organizational Unit</li>
+            <li>Go to Start → Administrative Tools → GROUP POLICY MANAGEMENT</li>
+            <li>Navigate to Domain → View the OU of Students</li>
+            <li>Right-click the OU → Create a GPO in this domain → Add GPOs needed for your system</li>
+            <li>After creating the GPO → Right-click the GPO → Edit, then follow the steps below for each requirement</li>
+          </ol>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong style="display: block; margin-top: 1rem; color: #2196F3;">USER CONFIGURATION POLICIES</strong>
+
+          <div style="background: #e3f2fd; padding: 1rem; border-left: 4px solid #2196F3; margin: 1rem 0;">
+            <strong style="color: #1565C0;">GPO NAME: User Interface Restrictions</strong>
+            <ul style="margin: 0.5rem 0; padding-left: 1.5rem; list-style-type: none;">
+              <li style="margin: 0.5rem 0;">
+                <strong>✓ Remove links and access to Windows Update</strong> → <code style="background: #fff3cd; padding: 2px 4px;">Enabled</code>
+                <div style="margin-left: 1rem; font-size: 0.9rem; color: #666;">User Configuration → Policies → Administrative Templates → Start Menu and Taskbar → Remove links and access to Windows Update</div>
+              </li>
+              <li style="margin: 0.5rem 0;">
+                <strong>✓ Remove Network Connections from the Start Menu</strong> → <code style="background: #fff3cd; padding: 2px 4px;">Enabled</code>
+                <div style="margin-left: 1rem; font-size: 0.9rem; color: #666;">User Configuration → Policies → Administrative Templates → Start Menu and Taskbar → Remove Network Connections from the Start Menu</div>
+              </li>
+              <li style="margin: 0.5rem 0;">
+                <strong>✓ Remove Help menu from the Start Menu</strong> → <code style="background: #fff3cd; padding: 2px 4px;">Enabled</code>
+                <div style="margin-left: 1rem; font-size: 0.9rem; color: #666;">User Configuration → Policies → Administrative Templates → Start Menu and Taskbar → Remove Help menu from the Start Menu</div>
+              </li>
+              <li style="margin: 0.5rem 0;">
+                <strong>✓ Remove Run menu from the Start Menu</strong> → <code style="background: #fff3cd; padding: 2px 4px;">Enabled</code>
+                <div style="margin-left: 1rem; font-size: 0.9rem; color: #666;">User Configuration → Policies → Administrative Templates → Start Menu and Taskbar → Remove Run menu from the Start Menu</div>
+              </li>
+              <li style="margin: 0.5rem 0;">
+                <strong>✓ Remove My Pictures icon from the Start Menu</strong> → <code style="background: #fff3cd; padding: 2px 4px;">Enabled</code>
+                <div style="margin-left: 1rem; font-size: 0.9rem; color: #666;">User Configuration → Policies → Administrative Templates → Start Menu and Taskbar → Remove My Pictures icon from the Start Menu</div>
+              </li>
+              <li style="margin: 0.5rem 0;">
+                <strong>✓ Remove My Music icon from the Start Menu</strong> → <code style="background: #fff3cd; padding: 2px 4px;">Enabled</code>
+                <div style="margin-left: 1rem; font-size: 0.9rem; color: #666;">User Configuration → Policies → Administrative Templates → Start Menu and Taskbar → Remove My Music icon from the Start Menu</div>
+              </li>
+              <li style="margin: 0.5rem 0;">
+                <strong>✓ Remove My Network Places icon from the Start Menu</strong> → <code style="background: #fff3cd; padding: 2px 4px;">Enabled</code>
+                <div style="margin-left: 1rem; font-size: 0.9rem; color: #666;">User Configuration → Policies → Administrative Templates → Start Menu and Taskbar → Remove My Network Places icon from the Start Menu</div>
+              </li>
+              <li style="margin: 0.5rem 0;">
+                <strong>✓ Add "Logoff" on the Start Menu</strong> → <code style="background: #fff3cd; padding: 2px 4px;">Enabled</code>
+                <div style="margin-left: 1rem; font-size: 0.9rem; color: #666;">User Configuration → Policies → Administrative Templates → Start Menu and Taskbar → Add "Logoff" on the Start Menu</div>
+              </li>
+              <li style="margin: 0.5rem 0;">
+                <strong>✓ Remove Task Manager from CTRL+ALT+DEL</strong> → <code style="background: #fff3cd; padding: 2px 4px;">Enabled</code>
+                <div style="margin-left: 1rem; font-size: 0.9rem; color: #666;">User Configuration → Policies → Administrative Templates → System → Ctrl+Alt+Del Options → Remove Task Manager</div>
+              </li>
+            </ul>
+          </div>
+
+          <div style="background: #f3e5f5; padding: 1rem; border-left: 4px solid #9C27B0; margin: 1rem 0;">
+            <strong style="color: #6A1B9A;">GPO NAME: Internet Explorer Settings</strong>
+            <ul style="margin: 0.5rem 0; padding-left: 1.5rem; list-style-type: none;">
+              <li style="margin: 0.5rem 0;">
+                <strong>✓ Internet Explorer Browser Title – Title Bar Text</strong> → <code style="background: #fff3cd; padding: 2px 4px;">&lt;domain name&gt;</code>
+                <div style="margin-left: 1rem; font-size: 0.9rem; color: #666;">User Configuration → Policies → Windows Settings → Internet Explorer Maintenance → Browser User Interface → Browser Title</div>
+              </li>
+            </ul>
+          </div>
+
+          <div style="background: #fce4ec; padding: 1rem; border-left: 4px solid #E91E63; margin: 1rem 0;">
+            <strong style="color: #C2185B;">GPO NAME: Windows Update</strong>
+            <ul style="margin: 0.5rem 0; padding-left: 1.5rem; list-style-type: none;">
+              <li style="margin: 0.5rem 0;">
+                <strong>✓ Prohibit access to properties of components of a LAN connection</strong> → <code style="background: #fff3cd; padding: 2px 4px;">Enabled</code>
+                <div style="margin-left: 1rem; font-size: 0.9rem; color: #666;">User Configuration → Policies → Administrative Templates → Network → Network Connections</div>
+              </li>
+              <li style="margin: 0.5rem 0;">
+                <strong>✓ Prevent access to the command prompt</strong> → <code style="background: #fff3cd; padding: 2px 4px;">Enabled</code>
+                <div style="margin-left: 1rem; font-size: 0.9rem; color: #666;">User Configuration → Policies → Administrative Templates → System → Prevent access to the command prompt</div>
+              </li>
+              <li style="margin: 0.5rem 0;">
+                <strong>✓ Prevent access to registry editing tools</strong> → <code style="background: #fff3cd; padding: 2px 4px;">Enabled</code>
+                <div style="margin-left: 1rem; font-size: 0.9rem; color: #666;">User Configuration → Policies → Administrative Templates → System → Prevent access to registry editing tools</div>
+              </li>
+              <li style="margin: 0.5rem 0;">
+                <strong>✓ Prohibit access to the Control Panel</strong> → <code style="background: #fff3cd; padding: 2px 4px;">Enabled</code>
+                <div style="margin-left: 1rem; font-size: 0.9rem; color: #666;">User Configuration → Policies → Administrative Templates → Control Panel → Prohibit access to the Control Panel</div>
+              </li>
+            </ul>
+          </div>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong style="display: block; margin-top: 1rem; color: #FF6F00;">COMPUTER CONFIGURATION POLICIES</strong>
+
+          <div style="background: #fff3e0; padding: 1rem; border-left: 4px solid #FF6F00; margin: 1rem 0;">
+            <strong style="color: #E65100;">GPO NAME: Admin Interface Restrictions</strong>
+            <ul style="margin: 0.5rem 0; padding-left: 1.5rem; list-style-type: none;">
+              <li style="margin: 0.5rem 0;">
+                <strong>✗ Remove links and access to Windows Update</strong> → <code style="background: #f5f5f5; padding: 2px 4px;">Disabled</code>
+                <div style="margin-left: 1rem; font-size: 0.9rem; color: #666;">Computer Configuration → Policies → Administrative Templates → Start Menu and Taskbar</div>
+              </li>
+              <li style="margin: 0.5rem 0;">
+                <strong>✗ Remove Network Connections from the Start Menu</strong> → <code style="background: #f5f5f5; padding: 2px 4px;">Disabled</code>
+              </li>
+              <li style="margin: 0.5rem 0;">
+                <strong>✗ Remove Help menu from the Start Menu</strong> → <code style="background: #f5f5f5; padding: 2px 4px;">Disabled</code>
+              </li>
+              <li style="margin: 0.5rem 0;">
+                <strong>✗ Remove Run menu from the Start Menu</strong> → <code style="background: #f5f5f5; padding: 2px 4px;">Disabled</code>
+              </li>
+              <li style="margin: 0.5rem 0;">
+                <strong>✗ Remove My Pictures icon from the Start Menu</strong> → <code style="background: #f5f5f5; padding: 2px 4px;">Disabled</code>
+              </li>
+              <li style="margin: 0.5rem 0;">
+                <strong>✗ Remove My Music icon from the Start Menu</strong> → <code style="background: #f5f5f5; padding: 2px 4px;">Disabled</code>
+              </li>
+              <li style="margin: 0.5rem 0;">
+                <strong>✗ Remove My Network Places icon from the Start Menu</strong> → <code style="background: #f5f5f5; padding: 2px 4px;">Disabled</code>
+              </li>
+              <li style="margin: 0.5rem 0;">
+                <strong>✗ Add "Logoff" on the Start Menu</strong> → <code style="background: #f5f5f5; padding: 2px 4px;">Disabled</code>
+              </li>
+              <li style="margin: 0.5rem 0;">
+                <strong>✗ Remove Task Manager from CTRL+ALT+DEL</strong> → <code style="background: #f5f5f5; padding: 2px 4px;">Disabled</code>
+              </li>
+            </ul>
+          </div>
+
+          <div style="background: #e8f5e9; padding: 1rem; border-left: 4px solid #4CAF50; margin: 1rem 0;">
+            <strong style="color: #2E7D32;">GPO NAME: Admin Windows Update</strong>
+            <ul style="margin: 0.5rem 0; padding-left: 1.5rem; list-style-type: none;">
+              <li style="margin: 0.5rem 0;">
+                <strong>✗ Prohibit access to properties of components of a LAN connection</strong> → <code style="background: #f5f5f5; padding: 2px 4px;">Disabled</code>
+                <div style="margin-left: 1rem; font-size: 0.9rem; color: #666;">Computer Configuration → Policies → Administrative Templates → Network → Network Connections</div>
+              </li>
+              <li style="margin: 0.5rem 0;">
+                <strong>✗ Prevent access to the command prompt</strong> → <code style="background: #f5f5f5; padding: 2px 4px;">Disabled</code>
+                <div style="margin-left: 1rem; font-size: 0.9rem; color: #666;">Computer Configuration → Policies → Administrative Templates → System</div>
+              </li>
+              <li style="margin: 0.5rem 0;">
+                <strong>✗ Prevent access to registry editing tools</strong> → <code style="background: #f5f5f5; padding: 2px 4px;">Disabled</code>
+              </li>
+              <li style="margin: 0.5rem 0;">
+                <strong>✗ Prohibit access to the Control Panel</strong> → <code style="background: #f5f5f5; padding: 2px 4px;">Disabled</code>
+                <div style="margin-left: 1rem; font-size: 0.9rem; color: #666;">Computer Configuration → Policies → Administrative Templates → Control Panel</div>
+              </li>
+            </ul>
+          </div>
+        </div>
       </section>
     </div>
   </main>
