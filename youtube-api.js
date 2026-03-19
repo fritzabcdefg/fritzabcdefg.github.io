@@ -118,9 +118,11 @@
     // Extract and fetch all video descriptions on page
     async extractAndFetchDescriptions() {
       const videos = this.getVideoElements();
+      console.log('YouTubeAPI: Found', videos.length, 'videos');
       if (!videos.length) return;
 
       const descriptionSection = document.querySelector('#description p');
+      console.log('YouTubeAPI: Description section found?', !!descriptionSection);
       if (!descriptionSection) return;
 
       // Save original content
@@ -128,12 +130,14 @@
 
       // Check if API key is configured
       if (!this.apiKey || this.apiKey === 'YOUR_YOUTUBE_API_KEY_HERE') {
+        console.warn('YouTube API key not configured');
         descriptionSection.innerHTML = '<em style="color: #d9534f;">Add your YouTube API key to config.js to load descriptions</em>';
         return;
       }
 
       // Extract first video ID (main video)
       const videoId = this.extractVideoId(videos[0]);
+      console.log('YouTubeAPI: Video ID extracted:', videoId);
       if (!videoId) return;
 
       // Show loading state
@@ -141,6 +145,7 @@
 
       // Fetch description
       const description = await this.fetchDescription(videoId);
+      console.log('YouTubeAPI: Description received:', !!description);
       
       if (description) {
         descriptionSection.innerHTML = this.formatDescription(description);
@@ -160,15 +165,30 @@
 
   // Initialize when DOM and config are ready
   function initYouTubeAPI() {
-    if (window.YouTubeConfig?.apiKey) {
+    if (!window.YouTubeConfig?.apiKey) {
+      console.warn('YouTubeConfig not available yet, retrying...');
+      setTimeout(initYouTubeAPI, 500);
+      return;
+    }
+    
+    // Wait for description element to exist
+    function waitForDescription() {
+      const descSection = document.querySelector('#description p');
+      if (!descSection) {
+        setTimeout(waitForDescription, 100);
+        return;
+      }
       YouTubeAPI.init(window.YouTubeConfig.apiKey);
     }
+    
+    waitForDescription();
   }
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initYouTubeAPI);
   } else {
-    initYouTubeAPI();
+    // DOM already loaded, run immediately
+    setTimeout(initYouTubeAPI, 100);
   }
 
   // Expose API globally
