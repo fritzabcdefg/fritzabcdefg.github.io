@@ -6,7 +6,7 @@
   'use strict';
 
   const YouTubeAPI = {
-    apiKey: AIzaSyBnIMfNz0_2DLKrzYzB_EzPgQCNmMhZ-x8,
+    apiKey: null,
     cache: {},
     CACHE_DURATION: 24 * 60 * 60 * 1000, // 24 hours
     
@@ -65,7 +65,7 @@
         return this.cache[videoId].description;
       }
 
-      if (!this.apiKey || this.apiKey === 'YOUR_YOUTUBE_API_KEY_HERE') {
+      if (!this.apiKey || this.apiKey === 'AIzaSyBnIMfNz0_2DLKrzYzB_EzPgQCNmMhZ-x8') {
         console.warn('YouTube API key not configured. Set YOUTUBE_API_KEY in config.js');
         return null;
       }
