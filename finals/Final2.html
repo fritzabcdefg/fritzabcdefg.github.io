@@ -21,7 +21,81 @@
 
       <section id="description">
         <h4>Notes / Description</h4>
-        <p>For Final 2, we are covering Creating of Users concepts. This covers user management, roles, and permissions in Windows Server.</p>
+        <div style="line-height: 1.8; font-size: 0.95rem;">
+          <strong> Add Domain Users (Distribute IT student names to all dept/section/area)</strong>
+          <ol style="margin: 0.8rem 0; padding-left: 1.5rem;">
+            <li><strong>Academic Department</strong>
+              <ol style="list-style-type: decimal; margin: 0.5rem 0; padding-left: 1.5rem;">
+                <li>Basic Art and Sciences Department
+                  <ul style="margin: 0.3rem 0; padding-left: 1.5rem;">
+                    <li>BTVTE Electrical</li>
+                    <li>BTVTE Electronics</li>
+                    <li>BTVTE Computer Hardware</li>
+                    <li>BTVTE Computer Software</li>
+                  </ul>
+                </li>
+                <li>Electrical and Allied Department
+                  <ul style="margin: 0.3rem 0; padding-left: 1.5rem;">
+                    <li>Information Technology</li>
+                    <li>Electrical Engineering</li>
+                    <li>Electronics Engineering</li>
+                    <li>Instrumentation and Control Technology</li>
+                    <li>BET Mechatronics</li>
+                  </ul>
+                </li>
+                <li>Mechanical and Allied Department
+                  <ul style="margin: 0.3rem 0; padding-left: 1.5rem;">
+                    <li>Mechanical Engineering Technology</li>
+                    <li>RAC Engineering Technology</li>
+                    <li>Non Destructive Engineering Technology</li>
+                    <li>Electromechanical Engineering Technology</li>
+                    <li>Automotive Engineering Technology</li>
+                    <li>BET ElectroMechanical</li>
+                  </ul>
+                </li>
+                <li>Civil and Allied Department
+                  <ul style="margin: 0.3rem 0; padding-left: 1.5rem;">
+                    <li>Civil Engineering</li>
+                    <li>Civil Engineering Technology</li>
+                    <li>Environmental Science</li>
+                    <li>Chemical Engineering Technology</li>
+                  </ul>
+                </li>
+              </ol>
+            </li>
+            <li><strong>Administrative Department </strong>
+              <ul style="margin: 0.3rem 0; padding-left: 1.5rem;">
+                <li>Registrar's Office</li>
+                <li>Director's Office</li>
+                <li>Research and Extension</li>
+                <li>Human Resource and Management Office</li>
+                <li>Finance Office</li>
+                <li>Supply and Procurement</li>
+                <li>Records Office</li>
+                <li>Library Services</li>
+              </ul>
+            </li>
+            <li>Create domain users for each department/office and technology section. Use their real names when creating the domain account</li>
+            <li>Create an organizational unit for each technology section or office (i.e. computer engineering, electronics, registrar, research etc.)</li>
+            <li>All users can only log on to workstations (XP class A network, 7 class B network) that were assigned to their respective departments/offices
+              <ul style="margin: 0.3rem 0; padding-left: 1.5rem;">
+                <li>Users → Properties → Computer Restrictions → select which computer</li>
+              </ul>
+            </li>
+            <li>All users should change their passwords every 30 days
+              <ul style="margin: 0.3rem 0; padding-left: 1.5rem;">
+                <li>Go to Group Policy Management → create a GPO for the org unit Academic & Administrative</li>
+                <li>For academic: Academic Password | For Administrative: Administrative Password</li>
+                <li>Click Edit → Computer Config → Security Settings → Account Policies → Password Policies → Maximum Password Age → Properties → 30 days → Apply → OK</li>
+              </ul>
+            </li>
+            <li>Academic users can log on from 7:30 AM - 8:45 AM while administrative staff users can log on from 7:00 AM - 7:00 PM
+              <ul style="margin: 0.3rem 0; padding-left: 1.5rem;">
+                <li>Select Users in each Department in academic → Properties → Account → Check "Log on hours" and select time range then log on permitted</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
       </section>
     </div>
   </main>
