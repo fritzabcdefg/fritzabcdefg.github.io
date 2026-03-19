@@ -216,6 +216,8 @@ body {
 
 main {
   padding: 2rem 1rem 4.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 h1, h2, h3, h4 {
@@ -308,10 +310,13 @@ main.container {
   overflow: hidden;
   box-shadow: var(--shadow-md);
   transition: var(--transition);
-  margin-top: 1.5rem;
-  margin-bottom: 2rem;
-  max-width: 800px;
+  margin-top: 0;
+  margin-bottom: 0;
   width: 100%;
+}
+
+#video-embed.ratio {
+  max-width: none;
 }
 
 .ratio iframe {

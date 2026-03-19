@@ -6,7 +6,7 @@
   'use strict';
 
   const YouTubeAPI = {
-    apiKey: null,
+    apiKey: AIzaSyBnIMfNz0_2DLKrzYzB_EzPgQCNmMhZ-x8,
     cache: {},
     CACHE_DURATION: 24 * 60 * 60 * 1000, // 24 hours
     
@@ -123,6 +123,15 @@
       const descriptionSection = document.querySelector('#description p');
       if (!descriptionSection) return;
 
+      // Save original content
+      const originalContent = descriptionSection.innerHTML;
+
+      // Check if API key is configured
+      if (!this.apiKey || this.apiKey === 'YOUR_YOUTUBE_API_KEY_HERE') {
+        descriptionSection.innerHTML = '<em style="color: #d9534f;">Add your YouTube API key to config.js to load descriptions</em>';
+        return;
+      }
+
       // Extract first video ID (main video)
       const videoId = this.extractVideoId(videos[0]);
       if (!videoId) return;
@@ -137,10 +146,7 @@
         descriptionSection.innerHTML = this.formatDescription(description);
       } else {
         // Restore original content if fetch failed
-        const originalContent = descriptionSection.getAttribute('data-original');
-        if (originalContent) {
-          descriptionSection.innerHTML = originalContent;
-        }
+        descriptionSection.innerHTML = originalContent;
       }
     },
 
