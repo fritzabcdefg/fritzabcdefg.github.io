@@ -127,6 +127,7 @@
 
       // Save original content
       const originalContent = descriptionSection.innerHTML;
+      console.log('YouTubeAPI: Original content:', originalContent);
 
       // Check if API key is configured
       if (!this.apiKey || this.apiKey === 'YOUR_YOUTUBE_API_KEY_HERE') {
@@ -138,20 +139,26 @@
       // Extract first video ID (main video)
       const videoId = this.extractVideoId(videos[0]);
       console.log('YouTubeAPI: Video ID extracted:', videoId);
-      if (!videoId) return;
+      if (!videoId) {
+        console.warn('YouTubeAPI: Could not extract video ID');
+        return;
+      }
 
       // Show loading state
       descriptionSection.innerHTML = '<em>Loading description...</em>';
 
       // Fetch description
       const description = await this.fetchDescription(videoId);
-      console.log('YouTubeAPI: Description received:', !!description);
+      console.log('YouTubeAPI: Description from API:', description);
       
-      if (description) {
+      if (description && description.trim().length > 0) {
+        // YouTube has a description, use it
+        console.log('YouTubeAPI: Using YouTube description');
         descriptionSection.innerHTML = this.formatDescription(description);
       } else {
-        // Restore original content if fetch failed
-        descriptionSection.innerHTML = originalContent;
+        // No YouTube description, keep original or show message
+        console.log('YouTubeAPI: No YouTube description found, keeping original content');
+        descriptionSection.innerHTML = originalContent || '<em>Add a description to the YouTube video to display it here</em>';
       }
     },
 
