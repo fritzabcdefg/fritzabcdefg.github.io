@@ -21,7 +21,148 @@
 
       <section id="description">
         <h4>Notes / Description</h4>
-        <p>For Final 7, we are covering Web Server concepts. This covers IIS installation, website hosting, and server management.</p>
+        <div style="line-height: 1.8; font-size: 0.92rem;">
+          <strong>PART 7: WEB SERVER</strong>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>Requirements</strong>
+          <ol style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li>Create a simple university website to be hosted on IIS 7</li>
+            <li>Create a simple website for each department</li>
+            <li>Create subdirectories for each department in the wwwroot folder</li>
+          </ol>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>Step 1: Install Web Server Role</strong>
+          <ol style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li>Open Server Manager</li>
+            <li>Navigate to Roles section</li>
+            <li>Click "Add Role"</li>
+            <li>Select "Web Server (IIS)"</li>
+            <li>Click Next and follow prompts to install</li>
+          </ol>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>Step 2: Add Web Server Features</strong>
+          <p>During Web Server (IIS) role installation, ensure the following are checked:</p>
+          <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li><strong>Application Development</strong></li>
+            <li><strong>IIS 6 Management Compatibility</strong></li>
+            <li><strong>FTP Server</strong></li>
+          </ul>
+
+          <div style="background: #fff3e0; padding: 1rem; border-left: 4px solid #FF9800; margin: 0.5rem 0;">
+            <strong style="color: #E65100;">Tool Download:</strong>
+            <p>Download AnyToISO Converter from: <code style="background: #f5f5f5; padding: 2px 4px; word-break: break-all;">https://anytoiso-converter.en.download.it/</code></p>
+            <p>Install this tool for website content management.</p>
+          </div>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>Step 3: Create and Configure University Website</strong>
+          <ol style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li>Open IIS Manager: Start → Administrative Tools → IIS Manager</li>
+            <li>In IIS Manager:
+              <ul style="margin: 0.3rem 0; padding-left: 1.5rem;">
+                <li>Expand your server domain name</li>
+                <li>Right-click "Sites" → Select "Add Website"</li>
+              </ul>
+            </li>
+            <li>Configure website properties:
+              <ul style="margin: 0.3rem 0; padding-left: 1.5rem;">
+                <li><strong>Site Name:</strong> <code style="background: #f5f5f5; padding: 2px 4px;">tupt</code></li>
+                <li><strong>Physical Path:</strong> <code style="background: #f5f5f5; padding: 2px 4px;">C:\inetpub\wwwroot\tupt</code>
+                  <ul style="margin: 0.2rem 0; padding-left: 1.5rem;">
+                    <li>Navigate: Computer → inetpub → wwwroot</li>
+                    <li>Create new folder named "tupt"</li>
+                    <li>Select this path</li>
+                  </ul>
+                </li>
+                <li><strong>Assigned IP Address:</strong> <code style="background: #f5f5f5; padding: 2px 4px;">172.31.0.31</code></li>
+                <li><strong>Host Name:</strong> <code style="background: #f5f5f5; padding: 2px 4px;">tupt.edu.ph</code></li>
+              </ul>
+            </li>
+            <li>Click OK to create the website</li>
+          </ol>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>Step 4: Configure Output Caching</strong>
+          <ol style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li>In IIS Manager, select the "tupt" website</li>
+            <li>Scroll through the features list and locate "Output Caching"</li>
+            <li>Right-click Output Caching → Select "Add" (or similar option)</li>
+            <li>Configure cache settings:
+              <ul style="margin: 0.3rem 0; padding-left: 1.5rem;">
+                <li><strong>File name extension:</strong> <code style="background: #f5f5f5; padding: 2px 4px;">.aspx</code></li>
+                <li><strong>User Mode Caching:</strong> Check this option</li>
+              </ul>
+            </li>
+            <li>Click OK to save settings</li>
+          </ol>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>Step 5: Prepare Website Content Structure</strong>
+          <ol style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li>Navigate to: Local Disk → inetpub → wwwroot → tupt</li>
+            <li>Copy the "iisstart" HTML file into the tupt folder
+              <ul style="margin: 0.3rem 0; padding-left: 1.5rem;">
+                <li><strong>Note:</strong> The "iisstart" folder/file serves as the index/home page</li>
+              </ul>
+            </li>
+            <li>Create subdirectories for each department inside the tupt folder:
+              <ul style="margin: 0.3rem 0; padding-left: 1.5rem;">
+                <li>Create "Academics" folder</li>
+                <li>Create "Administrative" folder</li>
+                <li>Create directories for each specific department (from Part 2)</li>
+              </ul>
+            </li>
+            <li>Add appropriate HTML/ASP.NET content to each subdirectory</li>
+          </ol>
+
+          <div style="background: #e3f2fd; padding: 1rem; border-left: 4px solid #2196F3; margin: 0.5rem 0;">
+            <strong style="color: #1976D2;">Folder Structure Example:</strong>
+            <pre style="background: #f5f5f5; padding: 0.5rem; margin: 0.3rem 0; overflow-x: auto;">wwwroot/
+├── tupt/
+│   ├── iisstart.htm (index/home page)
+│   ├── Academics/
+│   ├── Administrative/
+│   ├── ComputerEngineering/
+│   ├── InformationTechnology/
+│   └── (other departments...)</pre>
+          </div>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>Step 6: Access and Test Website</strong>
+          <ol style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li>In IIS Manager:
+              <ul style="margin: 0.3rem 0; padding-left: 1.5rem;">
+                <li>Go back to Sites section</li>
+                <li>Right-click the "tupt" website</li>
+                <li>Select "Browse" (opens Internet Explorer automatically)</li>
+              </ul>
+            </li>
+            <li>Test the website locally and verify pages load correctly</li>
+            <li>Test website access from multiple machines:
+              <ul style="margin: 0.3rem 0; padding-left: 1.5rem;">
+                <li>Open Internet Explorer on Windows Server 2008</li>
+                <li>Navigate to: <code style="background: #f5f5f5; padding: 2px 4px;">http://tupt.edu.ph/</code></li>
+                <li>Test on Windows 7 workstation: <code style="background: #f5f5f5; padding: 2px 4px;">http://tupt.edu.ph/</code></li>
+                <li>Test on Windows XP workstation: <code style="background: #f5f5f5; padding: 2px 4px;">http://tupt.edu.ph/</code></li>
+              </ul>
+            </li>
+            <li>Verify all pages load correctly and are accessible from all client machines</li>
+          </ol>
+
+          <div style="background: #e8f5e9; padding: 1rem; border-left: 4px solid #4CAF50; margin: 0.5rem 0; margin-top: 1rem;">
+            <strong style="color: #2E7D32;">✓ Web Server Setup Complete</strong>
+            <p>Your IIS 7 server is now:</p>
+            <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+              <li>Hosting the TUPT university website</li>
+              <li>Serving department-specific content</li>
+              <li>Caching .aspx pages for improved performance</li>
+              <li>Accessible from all client workstations</li>
+            </ul>
+          </div>
+        </div>
       </section>
     </div>
   </main>

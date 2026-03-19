@@ -21,7 +21,136 @@
 
       <section id="description">
         <h4>Notes / Description</h4>
-        <p>For Final 5, we are covering RAID concepts. This covers RAID configuration and disk management in Windows Server.</p>
+        <div style="line-height: 1.8; font-size: 0.92rem;">
+          <strong>PART 5: RAID</strong>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>Overview</strong>
+          <p>Install and configure the following RAID levels:</p>
+          <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li>RAID 0: Striped Volume</li>
+            <li>RAID 1: Mirrored Volume</li>
+            <li>Spanned Volume</li>
+            <li>RAID 5: Parity Volume</li>
+          </ul>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>Step 1-4: Prepare Virtual Hard Disks</strong>
+          <ol style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li>Clone Windows Server 2008 used for DHCP activity</li>
+            <li>After cloning, click Settings → Storage → click add attachment icon → Hard Disk</li>
+            <li>In medium selector:
+              <ul style="margin: 0.3rem 0; padding-left: 1.5rem;">
+                <li>Click Create</li>
+                <li>Check "Pre-allocate full size"</li>
+                <li>Allocate size: <code style="background: #f5f5f5; padding: 2px 4px;">50 MB</code></li>
+                <li>Click Finish</li>
+              </ul>
+            </li>
+            <li>Repeat steps 2-3 to create <strong>10 total hard disks</strong></li>
+          </ol>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>Step 5-9: Attach Disks and Initialize</strong>
+          <ol style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li>Back to Settings → Storage → Attach all 10 hard disks to WS2008</li>
+            <li>Start WS2008</li>
+            <li>Click Start → Administrative Tools → Server Manager</li>
+            <li>Expand Storage → Click Disk Management</li>
+            <li>An "Initialize Disk" dialog box will appear showing all attached disks</li>
+            <li>Ensure partition style is set to <code style="background: #f5f5f5; padding: 2px 4px;">MBR</code></li>
+            <li>Click OK to initialize all disks</li>
+          </ol>
+
+          <div style="background: #fff3cd; padding: 1rem; border-left: 4px solid #ffc107; margin: 0.5rem 0;">
+            <strong>After initialization:</strong> You will see Disk 0 (main VM storage) plus 10 additional disks (Disk 1-10) ready for RAID configuration.
+          </div>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>RAID 0: Striped Volume</strong>
+          <ol style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li>Right-click Disk 1 → Select "New Striped Volume"</li>
+            <li>Configuration wizard appears:
+              <ul style="margin: 0.3rem 0; padding-left: 1.5rem;">
+                <li>Click Next</li>
+                <li>Select Disk 2 → Click Add</li>
+                <li>Click Next → Next</li>
+                <li>Volume name: <code style="background: #f5f5f5; padding: 2px 4px;">RAID0</code> or <code style="background: #f5f5f5; padding: 2px 4px;">striped</code></li>
+                <li>Check "Perform a quick format"</li>
+                <li>Click Next → Finish</li>
+              </ul>
+            </li>
+            <li>If a confirmation prompt appears, click Yes</li>
+            <li>Wait for volume creation to complete</li>
+          </ol>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>RAID 1: Mirrored Volume</strong>
+          <ol style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li>Right-click Disk 3 → Select "New Mirrored Volume"</li>
+            <li>Configuration wizard appears:
+              <ul style="margin: 0.3rem 0; padding-left: 1.5rem;">
+                <li>Click Next</li>
+                <li>Select Disk 4 → Click Add</li>
+                <li>Click Next → Next</li>
+                <li>Volume name: <code style="background: #f5f5f5; padding: 2px 4px;">RAID1</code> or <code style="background: #f5f5f5; padding: 2px 4px;">mirrored</code></li>
+                <li>Check "Perform a quick format"</li>
+                <li>Click Next → Finish</li>
+              </ul>
+            </li>
+            <li>If a confirmation prompt appears, click Yes</li>
+            <li>Wait for volume creation to complete</li>
+          </ol>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>Spanned Volume</strong>
+          <ol style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li>Right-click Disk 5 → Select "New Spanned Volume"</li>
+            <li>Configuration wizard appears:
+              <ul style="margin: 0.3rem 0; padding-left: 1.5rem;">
+                <li>Click Next</li>
+                <li>Select Disk 6 → Click Add</li>
+                <li>Select Disk 7 → Click Add</li>
+                <li>Click Next → Next</li>
+                <li>Volume name: <code style="background: #f5f5f5; padding: 2px 4px;">spanned</code></li>
+                <li>Check "Perform a quick format"</li>
+                <li>Click Next → Finish</li>
+              </ul>
+            </li>
+            <li>If a confirmation prompt appears, click Yes</li>
+            <li>Wait for volume creation to complete</li>
+          </ol>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>RAID 5: Parity Volume</strong>
+          <ol style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li>Right-click Disk 8 → Select "New RAID 5 Volume"</li>
+            <li>Configuration wizard appears:
+              <ul style="margin: 0.3rem 0; padding-left: 1.5rem;">
+                <li>Click Next</li>
+                <li>Select Disk 9 → Click Add</li>
+                <li>Select Disk 10 → Click Add</li>
+                <li>Click Next → Next</li>
+                <li>Volume name: <code style="background: #f5f5f5; padding: 2px 4px;">RAID5</code></li>
+                <li>Check "Perform a quick format"</li>
+                <li>Click Next → Finish</li>
+              </ul>
+            </li>
+            <li>If a confirmation prompt appears, click Yes</li>
+            <li>Wait for volume creation to complete</li>
+          </ol>
+
+          <div style="background: #e8f5e9; padding: 1rem; border-left: 4px solid #4CAF50; margin: 0.5rem 0; margin-top: 1rem;">
+            <strong style="color: #2E7D32;">✓ RAID Installation Complete</strong>
+            <p>You have successfully configured all four RAID levels/volumes:</p>
+            <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+              <li><strong>RAID0:</strong> Striped volume using Disk 1-2 for improved performance</li>
+              <li><strong>RAID1:</strong> Mirrored volume using Disk 3-4 for fault tolerance</li>
+              <li><strong>Spanned:</strong> Spanned volume using Disk 5-7 for increased capacity</li>
+              <li><strong>RAID5:</strong> Parity volume using Disk 8-10 for balanced performance and fault tolerance</li>
+            </ul>
+          </div>
+        </div>
       </section>
     </div>
   </main>

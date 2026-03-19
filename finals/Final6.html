@@ -21,7 +21,88 @@
 
       <section id="description">
         <h4>Notes / Description</h4>
-        <p>For Final 6, we are covering Remote Desktop concepts. This covers remote desktop services, connection configuration, and server management.</p>
+        <div style="line-height: 1.8; font-size: 0.92rem;">
+          <strong>PART 6: REMOTE DESKTOP</strong>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>Prerequisites</strong>
+          <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li>Start Windows XP VM</li>
+            <li>Start Windows 7 VM</li>
+            <li>Start Windows Server 2008 VM</li>
+          </ul>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>Enable Remote Desktop on Windows 7</strong>
+          <ol style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li>Open Active Directory Users & Computers (on Windows Server 2008)</li>
+            <li>Navigate to Computers container</li>
+            <li>Find and open your Windows 7 computer object</li>
+            <li>Right-click Windows 7 → Computer Properties</li>
+            <li>Go to Remote Settings tab</li>
+            <li>Check the option: <code style="background: #f5f5f5; padding: 2px 4px;">Allow connections from running any version of Remote Desktop</code></li>
+            <li>Click Apply → OK</li>
+          </ol>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>Connect to Windows 7 from Windows Server 2008</strong>
+          <ol style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li>On Windows Server 2008, search for: <code style="background: #f5f5f5; padding: 2px 4px;">Remote Desktop Connection</code></li>
+            <li>Open Remote Desktop Connection application</li>
+            <li>Enter the computer name/hostname of your Windows 7 machine</li>
+            <li>Click Connect</li>
+            <li>Enter Windows 7 user credentials and password</li>
+            <li>Wait for connection to establish</li>
+            <li>A confirmation prompt will appear on Windows 7 VM asking to accept connection</li>
+            <li>On Windows 7, click OK to accept</li>
+            <li>Windows Server 2008 now has remote access to Windows 7 desktop</li>
+          </ol>
+
+          <div style="background: #e3f2fd; padding: 1rem; border-left: 4px solid #2196F3; margin: 0.5rem 0;">
+            <strong style="color: #1976D2;">✓ Windows 7 Remote Desktop Connection Established</strong>
+          </div>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>Enable Remote Desktop on Windows XP</strong>
+          <ol style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li>On Windows XP VM, right-click My Computer</li>
+            <li>Select Properties</li>
+            <li>Go to Remote tab</li>
+            <li>Verify that <code style="background: #f5f5f5; padding: 2px 4px;">Allow users to connect remotely to this computer</code> is checked</li>
+            <li>Click OK</li>
+          </ol>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>Connect to Windows XP from Windows Server 2008</strong>
+          <ol style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li><strong>Important:</strong> Log off Windows XP first (do NOT stay logged in)</li>
+            <li>On Windows Server 2008, search for: <code style="background: #f5f5f5; padding: 2px 4px;">Remote Desktop Connection</code></li>
+            <li>Open Remote Desktop Connection application</li>
+            <li>Enter the computer name/hostname of your Windows XP machine</li>
+            <li>Click Connect</li>
+            <li>A confirmation prompt appears on Windows XP</li>
+            <li>Click Yes to accept</li>
+            <li>Enter Windows XP user credentials</li>
+            <li>Windows Server 2008 now has remote access to Windows XP desktop</li>
+          </ol>
+
+          <div style="background: #fff3e0; padding: 1rem; border-left: 4px solid #FF9800; margin: 0.5rem 0;">
+            <strong style="color: #E65100;">⚠ Important Reminder:</strong> Always log off from Windows XP before attempting to connect via Remote Desktop Connection. You cannot have the same user logged in simultaneously on both local console and remote connection.
+          </div>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>Verification</strong>
+          <div style="background: #e8f5e9; padding: 1rem; border-left: 4px solid #4CAF50; margin: 0.5rem 0;">
+            <strong style="color: #2E7D32;">✓ Remote Desktop Setup Complete</strong>
+            <p>Windows Server 2008 can now:</p>
+            <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+              <li>Remote connect to Windows 7 via Remote Desktop</li>
+              <li>Remote connect to Windows XP via Remote Desktop</li>
+              <li>Manage both client workstations remotely</li>
+              <li>Access all resources and applications on remote machines</li>
+            </ul>
+          </div>
+        </div>
       </section>
     </div>
   </main>

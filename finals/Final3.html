@@ -21,7 +21,152 @@
 
       <section id="description">
         <h4>Notes / Description</h4>
-        <p>For Final 3, we are covering DHCP concepts and exam preparation. This covers DHCP server configuration and workstation joining in Windows Server.</p>
+        <div style="line-height: 1.8; font-size: 0.92rem;">
+          <strong>3. DHCP Server Requirements</strong>
+          <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li>IP Block: 172.31.0.0 /16 & 10.0.0.0 /8</li>
+            <li>Router IP address is valid IP address</li>
+            <li>DNS server IP address: Same as DHCP server + Google (8.8.8.8, 8.8.4.4) & OpenDNS (208.67.222.222, 208.67.220.220)</li>
+            <li>IP address lease expires every 8 hours</li>
+            <li>Do NOT distribute first 30 and last 30 valid IP addresses</li>
+          </ul>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>Setup Steps</strong>
+          <ol style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li>Clone Windows Server 2008</li>
+            <li>Clone Windows 7 & XP</li>
+            <li>Select WS2008 → Settings → Network → Change Adapter 1 & 2 to Internal Network</li>
+            <li>Configure WS2008 Network:
+              <ul style="margin: 0.3rem 0; padding-left: 1.5rem;">
+                <li>Go to WS2008 settings → Network → Rename Adapter 1 as "XPFEMALENET"</li>
+                <li>Rename Adapter 2 as "7MALENET"</li>
+                <li>Go to WSXP settings → Network → Rename Adapter 1 as "XPFEMALENET"</li>
+                <li>Go to WS7 settings → Network → Rename Adapter 1 as "7MALENET"</li>
+              </ul>
+            </li>
+            <li>Start WS2008</li>
+            <li>Configure Networking: Control Panel → Network & Internet → Network Connections → Change Adapter Settings → Right click LAN → Properties</li>
+            <li>Set IPv4 Properties:
+              <ul style="margin: 0.3rem 0; padding-left: 1.5rem;">
+                <li><strong>Local Area Connection 1 (Female):</strong>
+                  <ul style="font-family: monospace; margin: 0.2rem 0; padding-left: 1.5rem;">
+                    <li>IP: 172.31.0.31</li>
+                    <li>Subnet: 255.255.255.0</li>
+                    <li>Gateway: 172.31.0.32</li>
+                    <li>Preferred DNS: 127.0.0.1</li>
+                  </ul>
+                </li>
+                <li><strong>Local Area Connection 2 (Male):</strong>
+                  <ul style="font-family: monospace; margin: 0.2rem 0; padding-left: 1.5rem;">
+                    <li>IP: 10.0.0.31</li>
+                    <li>Subnet: 255.0.0.0</li>
+                    <li>Gateway: 10.0.0.32</li>
+                    <li>Preferred DNS: 127.0.0.1</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>Add DHCP Server Role: Start → Administrative Tools → Server Manager → Roles → Add Roles → Select DHCP SERVER</li>
+            <li>Validate settings and install DHCP</li>
+            <li>Open DHCP: Start → Administrative Tools → DHCP</li>
+            <li>Create New Scopes:
+              <ul style="margin: 0.3rem 0; padding-left: 1.5rem;">
+                <li><strong>Class A Female-XP Scope:</strong>
+                  <ul style="font-family: monospace; font-size: 0.9rem; margin: 0.2rem 0; padding-left: 1.5rem;">
+                    <li>Scope Name: Class A Female-XP</li>
+                    <li>Start IP: 172.31.0.1 | End IP: 172.31.0.254</li>
+                    <li>Subnet Mask: 255.255.255.0</li>
+                    <li>Exclusions: 172.31.0.1-30 (first 30) & 172.31.0.225-254 (last 30)</li>
+                    <li>Duration: 8 hours</li>
+                    <li>Default Gateway: 172.31.0.32</li>
+                    <li>Domain: tupt.edu.ph</li>
+                  </ul>
+                </li>
+                <li><strong>Class B Male-7 Scope:</strong>
+                  <ul style="font-family: monospace; font-size: 0.9rem; margin: 0.2rem 0; padding-left: 1.5rem;">
+                    <li>Scope Name: Class B Male-7</li>
+                    <li>Start IP: 10.0.0.1 | End IP: 10.0.0.254</li>
+                    <li>Subnet Mask: 255.0.0.0</li>
+                    <li>Exclusions: 10.0.0.1-30 (first 30) & 10.0.0.225-254 (last 30)</li>
+                    <li>Duration: 8 hours</li>
+                    <li>Default Gateway: 10.0.0.32</li>
+                    <li>Domain: tupt.edu.ph</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>Configure DNS Servers for both scopes (Remove 127.0.0.1):
+              <ul style="margin: 0.3rem 0; padding-left: 1.5rem;">
+                <li>Primary DNS: 8.8.8.8 (Google)</li>
+                <li>Secondary DNS: 8.8.4.4 (Google)</li>
+                <li>Tertiary DNS: 208.67.222.222 (OpenDNS)</li>
+                <li>Quaternary DNS: 208.67.220.220 (OpenDNS)</li>
+              </ul>
+            </li>
+          </ol>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>Configuring Windows XP</strong>
+          <ol style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li>Start Windows XP VM while keeping Windows Server 2008 running</li>
+            <li>Rename computer: START → Right click My Computer → Properties → Computer Name → Change → "LASTNAME_CS-XP" (e.g., CADAO_CS-XP)</li>
+            <li>Join domain: Domain: tupt.edu.ph → Click OK</li>
+            <li>Enter credentials:
+              <ul style="font-family: monospace; margin: 0.2rem 0; padding-left: 1.5rem;">
+                <li>Username: Administrator</li>
+                <li>Password: (Your WS2008 admin password)</li>
+              </ul>
+            </li>
+            <li>Welcome message appears → Click OK → Restart</li>
+            <li>Log in with Administrator account (TUPT\\administrator) and test with another domain user</li>
+          </ol>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>Configuring Windows 7</strong>
+          <ol style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li>Repeat all steps from Windows XP configuration but with Windows 7</li>
+            <li>Rename computer as: "LASTNAME_CS-WIN7"</li>
+            <li>Join domain: tupt.edu.ph with same credentials</li>
+            <li>Log in as TUPT\\administrator and test with another domain user</li>
+          </ol>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>Connecting Windows XP & 7 using DHCP</strong>
+          <ol style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li>Start WS2008, WXP & W7</li>
+            <li>Check Address Leases: WS2008 → Start → Administrative Tools → DHCP → Expand Domain → Expand IPv4 → Click Address Leases
+              <ul style="margin: 0.2rem 0; padding-left: 1.5rem;">
+                <li>Class B Male network should show W7 connected</li>
+                <li>Class A Female network should show WXP connected</li>
+              </ul>
+            </li>
+            <li>Verify on W7: Command Prompt → <code style="background: #f5f5f5; padding: 2px 4px;">ipconfig /all</code>
+              <ul style="margin: 0.2rem 0; padding-left: 1.5rem;">
+                <li>DHCP should be enabled with IP from Class B Male network</li>
+              </ul>
+            </li>
+            <li>Verify on WXP with same command (should show Class A Female IP)</li>
+          </ol>
+
+          <hr style="margin: 1rem 0; border: 1px solid #ddd;">
+          <strong>Troubleshooting: Domain Connection Errors</strong>
+          <div style="background: #fff3cd; padding: 1rem; border-left: 4px solid #ffc107; margin: 0.5rem 0;">
+            <strong>If error "Cannot connect to your domain controller" occurs:</strong>
+            <ol style="margin: 0.5rem 0; padding-left: 1.5rem;">
+              <li>Verify DHCP → Class A or B → Scope Options → 006 DNS Servers has NO 127.0.0.1</li>
+              <li>On Windows XP or Windows 7, run in Command Prompt:
+                <ul style="font-family: monospace; margin: 0.2rem 0; padding-left: 1.5rem;">
+                  <li>ipconfig /release</li>
+                  <li>ipconfig /renew</li>
+                  <li>ipconfig /all</li>
+                </ul>
+              </li>
+              <li>Verify DNS servers in ipconfig output match scope options</li>
+              <li>Attempt to reconnect to domain</li>
+            </ol>
+          </div>
+        </div>
       </section>
     </div>
   </main>
