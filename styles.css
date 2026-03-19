@@ -255,7 +255,6 @@ section#description {
   padding-left: 1rem;
   border-left: 1px solid var(--primary-color);
   opacity: 0.8;
-}
   font-weight: 700;
   color: var(--primary-color);
   transition: var(--transition);
