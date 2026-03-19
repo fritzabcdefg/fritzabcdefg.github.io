@@ -15,18 +15,22 @@
   <main>
     <h1 id="page-title">Final 1: Installation</h1>
 
-    <div class="ratio ratio-16x9" id="video-embed">
-      <!-- paste YouTube iframe here -->
-<iframe width="560" height="315" src="https://www.youtube.com/embed/5N3xAhDIDwA?si=xtqEOEpy1mR-gqsM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>    </div>
+    <div class="content-wrapper">
+      <div class="ratio ratio-16x9" id="video-embed">
+        <!-- paste YouTube iframe here -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5N3xAhDIDwA?si=xtqEOEpy1mR-gqsM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>      </div>
 
-    <section id="description">
-      <h4>Notes / Description</h4>
-      <p>For Final 1, we are covering Installation concepts and exam preparation. This covers the installation process of Windows Server operating systems.</p>
-    </section>
+      <section id="description">
+        <h4>Notes / Description</h4>
+        <p>For Final 1, we are covering Installation concepts and exam preparation. This covers the installation process of Windows Server operating systems.</p>
+      </section>
+    </div>
   </main>
 
   <div id="site-footer"></div>
 
+  <script src="../config.js"></script>
+  <script src="../youtube-api.js"></script>
   <script>
     fetch('../header.html').then(r=>r.text()).then(t=>{
       document.getElementById('site-header').innerHTML = t;

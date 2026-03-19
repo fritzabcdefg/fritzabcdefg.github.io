@@ -348,10 +348,61 @@ section h4 {
 }
 
 /* =============================================
+   VIDEO + DESCRIPTION LAYOUT
+   ============================================= */
+
+.content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  align-items: start;
+}
+
+#video-embed {
+  grid-column: 1;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+#description {
+  grid-column: 2;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--primary-color);
+  box-shadow: var(--shadow-md);
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+#description h4 {
+  margin-top: 0;
+}
+
+#description p {
+  margin-bottom: 0.75rem;
+}
+
+/* =============================================
    RESPONSIVE DESIGN
    ============================================= */
 
 @media (max-width: 768px) {
+  .content-wrapper {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  #video-embed {
+    grid-column: 1;
+  }
+
+  #description {
+    grid-column: 1;
+    max-height: none;
+  }
   .site-title {
     font-size: 2.5rem;
   }

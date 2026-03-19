@@ -14,19 +14,22 @@
   <main>
     <h1 id="page-title">Final 5: RAID</h1>
 
-    <div class="ratio ratio-16x9" id="video-embed">
-      <!-- paste YouTube iframe here -->
-<iframe width="560" height="315" src="https://www.youtube.com/embed/GZOogj0lQ34?si=spXhezj8J76VgktU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
+    <div class="content-wrapper">
+      <div class="ratio ratio-16x9" id="video-embed">
+        <!-- paste YouTube iframe here -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/GZOogj0lQ34?si=spXhezj8J76VgktU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>      </div>
 
-    <section id="description">
-      <h4>Notes / Description</h4>
-      <p>For Final 5, we are covering File Server concepts. This covers file sharing, storage management, and network access control.</p>
-    </section>
+      <section id="description">
+        <h4>Notes / Description</h4>
+        <p>For Final 5, we are covering RAID concepts. This covers RAID configuration and disk management in Windows Server.</p>
+      </section>
+    </div>
   </main>
 
   <div id="site-footer"></div>
 
+  <script src="../config.js"></script>
+  <script src="../youtube-api.js"></script>
   <script>
     fetch('../header.html').then(r=>r.text()).then(t=>{
       document.getElementById('site-header').innerHTML = t;
